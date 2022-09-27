@@ -3,7 +3,7 @@ from random import random
 
 class Numbergame:
     def __init__(self) -> None:
-        self.gamemap = [[0,0,0,0],
+        self.gamemap = [[2,0,2,2],
                         [0,-1,-1,-1],
                         [-1,-1,-1,-1],
                         [-1,-1,-1,-1]]
@@ -26,27 +26,49 @@ class Numbergame:
         pass
 
     def left(self):
+        # 行遍历
         for i in range(0,4):
             temp = []
+            mark = -1
+            # 行元素遍历
             for j in range(0,4):
-                if(self.gamemap[i][j]>-1):
+                if self.gamemap[i][j] > -1:
+                    if mark > -1:
+                        if temp[mark] == self.gamemap[i][j]:
+                            temp[mark] = temp[mark] + 1
+                            continue
+                    mark += 1
                     temp.append(self.gamemap[i][j])
-            mark = 0
-            while j<temp.__len__():
-                # 相同元素消除&升级
-                if(j!=temp.__len__()-1 and temp[j]==temp[j+1]):
-                    self.gamemap[i][mark]=temp[j]+1
-                    j += 2
-                    mark += 1
-                # 无法消除元素直接填入
-                else:
-                    self.gamemap[i][mark]=temp[j]
-                    j += 1
-                    mark += 1
-            # 空格填入-1
-            for j in range(mark,4):
-                self.gamemap[i][j]=-1
+            # 为行填入元素
+            while temp.__len__()<4:
+                temp.append(-1)
+            self.gamemap[i] = temp
             del temp
+        pass
+
+    def left(self):
+        # 行遍历
+        for i in range(0,4):
+            temp = []
+            mark = -1
+            # 行元素遍历
+            for j in range(3,-1,-1):
+                if self.gamemap[i][j] > -1:
+                    if mark > -1:
+                        if temp[mark] == self.gamemap[i][j]:
+                            temp[mark] = temp[mark] + 1
+                            continue
+                    mark += 1
+                    temp.append(self.gamemap[i][j])
+            # 为行填入元素
+            while temp.__len__()<4:
+                temp.append(-1)
+            temp.reverse()
+            self.gamemap[i] = temp
+            del temp
+        pass
+
+
 
                 
 
