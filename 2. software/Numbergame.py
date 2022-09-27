@@ -40,23 +40,25 @@ class Numbergame:
                 if self.__gamemap[i][j] == -1:
                     return False
                 # 有可消除元素
-                print([i-1,j])
-                if self.__limit([i-1,j]) and self.__gamemap[i][j]==self.__gamemap[i-1][j]:
+                if self.__limit(i-1,j) and self.__gamemap[i][j]==self.__gamemap[i-1][j]:
                     return False
-                if self.__limit([i+1,j]) and self.__gamemap[i][j]==self.__gamemap[i+1][j]:
+                if self.__limit(i+1,j) and self.__gamemap[i][j]==self.__gamemap[i+1][j]:
                     return False
-                if self.__limit([i,j-1]) and self.__gamemap[i][j]==self.__gamemap[i][j-1]:
+                if self.__limit(i,j-1) and self.__gamemap[i][j]==self.__gamemap[i][j-1]:
                     return False
-                if self.__limit([i,j+1]) and self.__gamemap[i][j]==self.__gamemap[i][j+1]:
+                if self.__limit(i,j+1) and self.__gamemap[i][j]==self.__gamemap[i][j+1]:
                     return False
         return True
 
-    def __limit(x):
-        for i in x:
-            if i > 3:
-                return False
-            if i < 0:
-                return  False
+    def __limit(self,x,y):
+        if x < 0:
+            return False
+        if x > 3:
+            return False
+        if y < 0:
+            return False
+        if y > 3:
+            return False
         return True
 
     def left(self):
@@ -162,13 +164,17 @@ class Numbergame:
 game = Numbergame()
 while 1:
     print(game.show())
-    print(game.playing())
-    n = input()
-    if n=='left':
-        game.left()
-    if n=='right':
-        game.right()
-    if n=='up':
-        game.up()
-    if n=='down':
-        game.down()
+    a = game.playing()
+    print(a)
+    if a is Gamestatus.end:
+        break
+    # n = input()
+    game.up()
+    # if n=='left':
+    #     game.left()
+    # if n=='right':
+    #     game.right()
+    # if n=='up':
+    #     game.up()
+    # if n=='down':
+    #     game.down()
