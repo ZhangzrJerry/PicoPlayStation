@@ -1,4 +1,2 @@
-a = [1,0]
-print(a)
-a.reverse()
-print(a)
+temp = [10,1]
+print(temp.__len__())
