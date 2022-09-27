@@ -2,8 +2,10 @@ from random import random
 
 from Gamestatus import Gamestatus
 
+from Gameinterface import Gameinterface
 
-class Numbergame:
+
+class Numbergame(Gameinterface):
     def __init__(self) -> None:
         self.__gamemap = [[-1,-1,-1,-1],
                         [-1,-1,-1,-1],
@@ -156,25 +158,7 @@ class Numbergame:
         self.__random_create()
         return Gamestatus.game
 
-    def show(self):
-        return [[self.__gamenum[j] if j!=-1 else 0 for j in i] for i in self.__gamemap]
-
-
+    # def show(self):
+    #     return [[self.__gamenum[j] if j!=-1 else 0 for j in i] for i in self.__gamemap]
 
 game = Numbergame()
-while 1:
-    print(game.show())
-    a = game.playing()
-    print(a)
-    if a is Gamestatus.end:
-        break
-    # n = input()
-    game.up()
-    # if n=='left':
-    #     game.left()
-    # if n=='right':
-    #     game.right()
-    # if n=='up':
-    #     game.up()
-    # if n=='down':
-    #     game.down()
