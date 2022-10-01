@@ -1,8 +1,46 @@
 from random import random
 
-from Gamestatus import Gamestatus
+from abc import ABCMeta,abstractmethod
 
-from Gameinterface import Gameinterface
+from enum import Enum
+
+class Gameinterface(metaclass=ABCMeta): 
+
+    @abstractmethod
+    def left(self):
+        pass
+
+    @abstractmethod
+    def right(self):
+        pass
+    
+    @abstractmethod
+    def up(self):
+        pass
+    
+    @abstractmethod
+    def down(self):
+        pass
+    
+    @abstractmethod
+    def playing(self):
+        pass
+    
+    pass
+
+class Gamestatus(Enum):
+    win = 1
+    end = 2
+    left = 3
+    right = 4
+    up = 5
+    down = 6
+    double_left = 7
+    double_right = 8
+    double_up = 9
+    double_down = 10
+    home = 11
+    game = 12
 
 
 class Numbergame(Gameinterface):
@@ -157,3 +195,17 @@ class Numbergame(Gameinterface):
             return Gamestatus.end
         self.__random_create()
         return Gamestatus.game
+    
+    pass
+
+
+
+
+from machine import Pin
+
+
+if __name__ == 'main' :
+    gamelist = [["2048",Numbergame()]]
+    gamer = gamelist[0][1]
+    
+    
