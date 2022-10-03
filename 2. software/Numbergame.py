@@ -157,3 +157,8 @@ class Numbergame(Gameinterface):
             return Gamestatus.end
         self.__random_create()
         return Gamestatus.game
+
+    # def show(self):
+    #     return [[self.__gamenum[j] if j!=-1 else 0 for j in i] for i in self.__gamemap]
+
+game = Numbergame()
