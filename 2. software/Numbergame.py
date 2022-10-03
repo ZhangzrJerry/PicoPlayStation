@@ -8,19 +8,22 @@ class Numbergame():
                         [-1,-1,-1,-1],
                         [-1,-1,-1,-1]]
         self.__gamenum = [2,4,8,16,32,64,128,256,512,1024,2048]
-        self.__random_create()
-        self.__random_create()
+        self.random_create()
+        self.random_create()
         pass
 
-    def __random_create(self):
+    def random_create(self):
         temp = []
         # 把空元素放入列表
         for i in range(0,4):
             for j in range(0,4):
                 if self.__gamemap[i][j] == -1:
                     temp.append([i,j])
+        mark = int(random()*temp.__len__())
+        if temp.__len__() <= mark:
+            return
         # 抽取任一空元素
-        mark = temp[int(random()*temp.__len__())]
+        mark = temp[mark]
         num = 0 if random() < 0.75 else 1
         self.__gamemap[mark[0]][mark[1]] = num
         pass
@@ -145,5 +148,12 @@ class Numbergame():
                 self.__gamemap[j][i] = temp[3-j]
             del temp
         pass
-    
+
+    def show(self):
+        return self.__gamemap
+
+    def length(self):
+        return self.__gamenum.__len__()
+
     pass
+
