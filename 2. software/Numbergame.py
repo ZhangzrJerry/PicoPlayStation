@@ -1,11 +1,7 @@
 from random import random
 
-from Gamestatus import Gamestatus
 
-from Gameinterface import Gameinterface
-
-
-class Numbergame(Gameinterface):
+class Numbergame():
     def __init__(self) -> None:
         self.__gamemap = [[-1,-1,-1,-1],
                         [-1,-1,-1,-1],
@@ -30,12 +26,12 @@ class Numbergame(Gameinterface):
         pass
 
 
-    def __if_win(self):
+    def if_win(self):
         if self.__gamenum.__len__()-1 in self.__gamemap:
             return True
         return False
 
-    def __if_end(self):
+    def if_end(self):
         for i in range(0,4):
             for j in range(0,4):
                 # 仍有空元素
@@ -149,16 +145,5 @@ class Numbergame(Gameinterface):
                 self.__gamemap[j][i] = temp[3-j]
             del temp
         pass
-        
-    def playing(self):
-        if self.__if_win()==True:
-            return Gamestatus.win
-        if self.__if_end()==True:
-            return Gamestatus.end
-        self.__random_create()
-        return Gamestatus.game
-
-    # def show(self):
-    #     return [[self.__gamenum[j] if j!=-1 else 0 for j in i] for i in self.__gamemap]
-
-game = Numbergame()
+    
+    pass
